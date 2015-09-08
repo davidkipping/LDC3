@@ -1,6 +1,6 @@
 # LDC3
 
-LDC3 is a code for sampling physically permissable limb darkening coefficients for the Sing et al. (2009) three-parameter law using the approximate technique described in Kipping (2015) (see http://arxiv.org/abs/XXXX.XXXX). Specifically, we define physically permissable intensity profile as being everywhere-positive, monotonically decreasing from center to limb and having a curl at the limb. The approximate sampling method is analytic and thus very fast, reproducing physically permissable samples in 97.3% of random draws (high validity) and encompassing 94.4% of the physically permissable parameter volume (high completeness).
+LDC3 is a code for sampling physically permissible limb darkening coefficients for the Sing et al. (2009) three-parameter law using the approximate technique described in Kipping (2015) (see http://arxiv.org/abs/XXXX.XXXX). Specifically, we define physically permissible intensity profile as being everywhere-positive, monotonically decreasing from center to limb and having a curl at the limb. The approximate sampling method is analytic and thus very fast, reproducing physically permissible samples in 97.3% of random draws (high validity) and encompassing 94.4% of the physically permissible parameter volume (high completeness).
 
 The python module LDC3.py contains the transformation equations and an example calling routine example.py may be used as a demonstration. This code has been tested with python 2.7 on Mac OS X Yosemite. Compile and run using: python2.7 example.py LDC3.py
 
