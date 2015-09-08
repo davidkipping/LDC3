@@ -1,0 +1,266 @@
+%% CRITERIA
+%%
+
+\subsection{Physical Conditions}
+\label{sub:physicalconditions}
+
+We define the following \textit{physical conditions} with respect to a limb
+darkened stellar intensity profile:
+
+\begin{itemize}
+\item[{\textbf{(I)}}] an everywhere-positive intensity profile,
+\item[{\textbf{(II)}}] a monotonically decreasing intensity profile from the
+centre of the star to the limb,
+\item[{\textbf{(III)}}] the intensity profile has a negative curl at the limb.
+\end{itemize}
+
+Physical conditions \I\ and \II\ are the same two imposed in our previous paper,
+\citet{LD:2013}. Physical condition \III\ is motivated by the expectation that
+the intensity rapidly drops off towards the limb (and is discussed in more 
+detail later in \S\ref{sub:criterionE}). Throughout this work, we refer to a set 
+of LDCs satisfying these three conditions as being physical, and LDCs otherwise 
+are defined as unphysical. In what follows, we explore the consequences of these 
+simple constraints.
+
+\subsection{Criterion A}
+
+Physical condition \I\ demands that $I(\mu)>0$ $\forall$ $0\leq\mu<1$. We begin 
+by evaluating this condition at two extrema of $\mu\to1$ and $\mu\to0$, in a 
+similar manner to the approach adopted in \citet{LD:2013}:
+
+\begin{align}
+\lim_{\mu\to1} I &= 1 > 0,\nonumber \\
+\lim_{\mu\to0} I &= 1 - c_2 - c_3 -  c_4 > 0.
+\end{align}
+
+The upper line clearly has no constraining power, but the second line provides
+our first criterion of
+
+\begin{align}
+c_2 + c_3 + c_4 < 1.
+\label{eqn:criterionA}
+\end{align}
+
+\subsection{Criteria B \& C}
+
+Next, we consider physical condition \II, which demands that 
+$\partial I/\partial \mu>0$ $\forall$ $0\leq\mu<1$:
+
+\begin{align}
+\frac{ \partial I(\mu) }{\partial \mu } &= c_2 + \frac{3}{2} c_3 \mu^{1/2} + 2 c_4 \mu.
+\end{align}
+
+As was done in the previous subsection, let us evaluate the above in the extreme 
+cases of $\mu\to1$ and $\mu\to0$, yielding
+
+\begin{align}
+\lim_{\mu\to1} \frac{ \partial I(\mu) }{\partial \mu } &= c_2 + \frac{3}{2} c_3 + 2 c_4 > 0,\nonumber\\
+\lim_{\mu\to0} \frac{ \partial I(\mu) }{\partial \mu } &= c_2 > 0.
+\end{align}
+
+These two expressions provide our criteria B and C, which are respectively
+given by
+
+\begin{align}
+2 c_2 + 3 c_3 + 4 c_4 > 0,
+\label{eqn:criterionB}
+\end{align}
+
+and
+
+\begin{align}
+c_2 > 0.
+\label{eqn:criterionC}
+\end{align}
+
+\subsection{Criterion D}
+
+Physical condition \II\ tells us that the intensity decreases from the centre of 
+the star to the limb. This implies that the intensity everywhere (except at the
+centre of the star) is less than that present at the centre of the star, or
+mathematically that
+
+\begin{align}
+I(\mu) < \lim_{\mu\to1} I(\mu).
+\end{align}
+
+One simple closed-form result from this constraint occurs by comparing the
+intensity at the limb to the centre via:
+
+\begin{align}
+\lim_{\mu\to0} I(\mu) < \lim_{\mu\to1} I(\mu).
+\end{align}
+
+This condition, derived by physical condition \II, provides our fourth
+criterion,
+
+\begin{align}
+c_2 + c_3 + c_4 > 0.
+\label{eqn:criterionD}
+\end{align}
+
+\subsection{Criterion E}
+\label{sub:criterionE}
+
+Consider the behaviour of the intensity profile at the limb. By virtue of
+condition \II, the intensity profile must be decreasing as we approach the 
+boundary. We therefore expect a negative gradient with respect to $r$, or 
+equivalently a positive gradient with respect to $\mu$, since 
+$\partial r/\partial \mu$ is always negative. We also expect that at the limb 
+the gradient of the gradient (i.e. the curl) is negative. This is consistent 
+with the asymptotic-like behaviour expected due to foreshortening near the limb, 
+causing the gradient to become ever-more negative and defines physical condition 
+\III. Note that a negative curl with respect to $r$ is equivalent to a negative 
+curl with respect to $\mu$, since we now multiply by $(\partial r/\partial \mu)$ 
+twice, leading to a double negative. The curl may be expressed as
+
+\begin{align}
+\frac{\partial^2 I(\mu)}{\partial \mu^2} = \frac{3}{4} c_3 + 2 c_4 \mu^{1/2}.
+\end{align}
+
+At the limb then ($\mu \to 0$), we expect that
+
+\begin{align}
+\lim_{\mu\to0} \Big(\frac{\partial^2 I(\mu)}{\partial \mu^2}\Big) < 0,
+\end{align}
+
+which defines criterion E,
+
+\begin{align}
+c_3 < 0.
+\label{eqn:criterionE}
+\end{align}
+
+\subsection{Criterion F}
+\label{sub:criterionF}
+
+Physical condition \I\ requires that $I(\mu)$ is everywhere positive. Combining
+\I\ with \II\ implies that $I(\mu)$ must be less than unity everywhere, which
+one may consider to be physical condition \textbf{I'}. Writing this out along 
+with \II, one may show that
+
+\begin{align}
+-c_2 \mu - c_3 \mu^{3/2} - c_4 \mu^2 > -c_2 - c_3 - c_4,\\
+\frac{2}{3} c_2 \mu + c_3 \mu^{3/2} + \frac{4}{3} c_4 \mu^2 > 0.
+\end{align}
+
+Adding the two inequalities shown above cancels out the $c_3 \mu^{3/2}$ terms
+and leaves us with a quadratic equation:
+
+\begin{align}
+c_4 \mu^2 - c_2 \mu > -3(c_2 + c_3 + c_4).
+\end{align}
+
+From Criterion A, we know that the sum of the coefficients must be less than 
+unity, implying that in the limit of $\mu\to1$, we have,
+
+\begin{align}
+c_4 - c_2 > -3.
+\label{eqn:c4c2diff}
+\end{align}
+
+Starting from criterion B and invoking criterion E, we can also show that:
+
+\begin{align}
+2c_2 + 3c_3 + 4c_4 > 0,\nonumber\\
+3c_3 > -2c_2 - 4c_4,\nonumber\\
+-2c_2 - 4c_4 < 3c_3 < 0,\nonumber\\
+c_2 + 2c_4 > 0.
+\label{eqn:c4c2sum}
+\end{align}
+
+Summing Equations~\ref{eqn:c4c2diff} \& \ref{eqn:c4c2sum} together yields
+
+\begin{align}
+c_4 > -1.
+\end{align}
+
+Through numerical experimentation, we find that applying the slightly more 
+conservative bound of $c_4>0$ yields a more symmetric loci of allowed points
+(as discussed later in \S\ref{sec:transformations}), from which it is easier to 
+directly sample. We therefore modify criterion F to,
+
+\begin{align}
+c_4 > 0.
+\label{eqn:criterionF}
+\end{align}
+
+\subsection{Criterion G}
+\label{sub:criterionG}
+
+For our final criterion, we begin by considering physical condition \II:
+
+\begin{align}
+\frac{ \partial I(\mu) }{\partial \mu } &> 0,\nonumber\\
+2 c_4 \mu + \frac{3}{2} c_3 \mu^{1/2} + c_2 &> 0.
+\end{align}
+
+The gradient expressed must be everywhere-positive and so let us compute
+the minimum gradient possible, which occurs when the curl equals zero, or
+when
+
+\begin{align}
+\frac{\partial (2 c_4 \mu + \frac{3}{2} c_3 \mu^{1/2} + c_2) }{ \partial \mu } &= 0,\nonumber\\
+\frac{3}{4} c_3 \mu^{-1/2} + 2 c_4 &= 0.
+\end{align}
+
+Therefore, the minimum gradient occurs when $\mu=\mu_{\mathrm{min}}$, where we 
+define
+
+\begin{align}
+\mu_{\mathrm{min}}^{1/2} = -\frac{3c_3}{8c_4}.
+\end{align}
+
+In the case where criterion E and F are in effect, then $c_3$ is negative and 
+$c_4$ is positive meaning that $\mu_{\mathrm{min}}$ is a real number.
+
+The point $\mu_{\mathrm{min}}$ may or may not be within the range $0<\mu<1$. If 
+indeed it is, then implicitly $-1 < 3 c_3/(8 c_4) < 0$ and we require that 
+the gradient at this point is positive, giving
+
+\begin{align}
+\mathrm{if}\,\,\,-1 < \frac{3 c_3}{8 c_4} < 0\,\mathrm{\,\,\,then}\nonumber\\
+c_2 > \frac{9 c_3^2}{32 c_4}.
+\end{align}
+
+As with criterion F, we find through numerical tests in 
+\S\ref{sec:transformations} that the loci of points can be made symmetric if we 
+impose criterion G under \textit{all} circumstances, not just when 
+$-1 < 3 c_3/(8 c_4) < 0$. We therefore modify criterion G to
+
+\begin{align}
+c_2 > \frac{9 c_3^2}{32 c_4}.
+\label{eqn:criterionG}
+\end{align}
+
+\subsection{Summary of Analytic Criteria}
+\label{sub:summaryofcriteria}
+
+To summarize, our seven analytic criteria on the three LDCs are
+
+\begin{align}
+c_2 + c_3 + c_4 &< 1,\,\,\,\mathbf{[A]}\nonumber\\
+2 c_2 + 3 c_3 + 4 c_4 &> 0,\,\,\,\mathbf{[B]}\nonumber\\
+c_2 &> 0, \,\,\,\mathbf{[C]}\nonumber\\
+c_2 + c_3 + c_4 &> 0, \,\,\,\mathbf{[D]}\nonumber\\
+c_3 &< 0, \,\,\,\mathbf{[E]}\nonumber\\
+c_4 &> 0, \,\,\,\mathbf{[F]}\nonumber\\
+c_2 &> \frac{9 c_3^2}{32 c_4}. \,\,\,\mathbf{[G]}
+\label{eqn:ALLcriteria}
+\end{align}
+
+Using the three physical conditions only, we note that criterion F should
+strictly be $c_4>-1$. We have modified this criterion to be slightly more 
+conservative so that the loci of allowed LDCs can be transformed into a 
+symmetric cone shape depicted later in \S\ref{sec:transformations}. Similarly, 
+criterion G strictly only applies when $-1 < 3 c_3/(8 c_4) < 0$ if one uses 
+the three physical conditions. We again modify the criterion such that it 
+applies under all circumstances, in order to yield a more symmetric loci, as
+shown later in \S\ref{sec:transformations}. We provide Python and Fortran code
+(\LDC) to test whether these criteria hold, for which the user can also use
+the unmodified versions of the criteria if desired (available at \link).
+
+In \S\ref{sec:criteria_tests}, we explore the consequences of these 
+modifications and perform numerical tests demonstrating the effectiveness of the 
+seven criteria. First though, we calculate the allowed maxima/minima on each
+LDC using the seven criteria, as shown in the next section, \S\ref{sec:bounds}.

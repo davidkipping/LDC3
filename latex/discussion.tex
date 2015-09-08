@@ -1,0 +1,76 @@
+%% DISCUSSION
+%%
+
+In this work, we have presented a set of seven analytic criteria which may be
+used to assess the physicality of LDCs associated with the \citet{sing:2009}
+three-parameter non-linear limb darkening law. We imposed simple conditions that 
+the flux is everywhere positive, monotonically decreases from centre to limb and 
+has a negative curl at the limb. Through numerical testing, we have shown that 
+points naively sampled with a simple accept/reject algorithm applied to our 
+criteria are always physically valid. Additionally, over 95\% of the physically 
+allowed loci of LDCs (found through brute force numerical exploration) satisfy 
+the seven criteria, demonstrating a very high completeness. Using an unmodified
+set of criteria which retains the asymmetries present in the loci of allowed
+LDCs, the completeness is 100\%.
+
+Armed with these criteria, we have re-parameterized the LDCs such that the loci 
+of allowed points morphologically resembles a regular geometric shape, 
+specifically a cone. We have shown that uniformly sampling points from the conal
+region in the re-parameterized space yields physically plausible and
+uniformly distributed LDCs to high accuracy. Specifically, we find a validity
+of 97.4\% and a completeness of 94.4\%. 
+
+Sampling from the conal region may be achieved by drawing a uniform random 
+variate in the transformed space $\{\alpha_h,\alpha_r,\alpha_{\theta}\}$, for 
+which the relational expressions to the original $\{c_2,c_3,c_4\}$ LDCs are 
+provided in Equation~\ref{eqn:alpha}. We also provide public code (\LDC) in 
+Python and Fortran to perform both the forward and inverse calculation
+between the parameterizations (\link).
+
+Our work provides, for the first time, a practical and efficient framework for 
+fitting astronomical data affected by limb darkening with a law supporting three
+degrees of freedom. Until now, one had to limit oneself to efficient sampling 
+of a two-parameter limb darkening law \citep{LD:2013} and go without the major
+improvement in accuracy provided by a three-parameter law, such as that of
+\citet{sing:2009}. Alternatively, one would have had to explore and marginalize
+over unphysical combinations of LDCs (which we estimate would occur for at 
+least 99.9\% of naively sampled points) or numerically test the physicality
+of each realization of LDCs (again with an overhead of rejecting the vast
+majority of points). In any case, we argue that our solution provides major
+advantages and enables the community to practically fit more complex limb 
+darkening profiles for the first time.
+
+The only published grids of theoretical LDCs using the \citet{sing:2009} law
+comes from \citet{sing:2010}. With the Kepler bandpass, we find that 99.6\% of 
+the \citet{sing:2010} tabulated points satisfy physical conditions \I, \II\ and 
+\III. Further more, 97.7\% of these tabulated points reproduce an $\boldalpha$
+transformed LDC within the unit cube. These values again demonstrate that
+the $\boldalpha$ parameterization can be practically used to explore the
+physically allowed LDCs. 
+
+In some applications, having ``only'' $97.3$\% of the LDCs being physically 
+valid may be insufficient and one may wish to ensure 100\% validity. Since 
+the seven analytic criteria guarantee 100\% validity, one may draw a set of LDCs 
+using the $\boldalpha$ parameterization and then test if this realization 
+satisfies the seven criteria. In practice, criteria B and D are never
+violated by points sampled from the conal region and thus it is only necessary
+to test five criteria. This approach enables a guaranteed physically plausible 
+set of LDCs at minimal computational expense. To aid the community, our code 
+\LDC\ can perform this test (\link).
+
+Whilst the quadratic law (and other two parameter laws) will likely remain 
+suitable for many studies, the analysis of high precision data increasingly 
+demands a more sophisticated treatment of limb darkening to avoid this
+issue becoming a bottleneck in obtainable accuracy \citep{epinoza:2015}. By 
+freely fitting high precision data with our $\boldalpha$ parameterization of 
+\citet{sing:2009} limb darkening, one can have greater confidence that the 
+parameters of interest are marginalized exclusively over the physically 
+plausible parameter space and limb darkening is modeled in a manner more 
+consistent with simulations from modern stellar atmosphere models. We also note 
+that informative priors on our $\boldalpha$ parameterization may be used as 
+well, in cases where one has strong belief in the results of stellar atmosphere 
+models and the star is well-characterized already, or alternatively from 
+previous posteriors derived from freely fitting the LDCs. For either
+informative or uninformative sampling, the $\boldalpha$ parameterization offers
+an efficient and physically sound pathway to exploring parameter space when
+modeling limb darkening under the three-parameter law.

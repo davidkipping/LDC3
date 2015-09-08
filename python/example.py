@@ -4,12 +4,16 @@ import LDC3
 # Generate random alpha values
 alphas=[0 for i in range(3)]
 alphas=[random.uniform(0.0,1.0) for i in range(3)]
+print ' '
+print 'Generating random alpha vector:'
 print 'alpha_h = ',alphas[0]
 print 'alpha_r = ',alphas[1]
 print 'alpha_t = ',alphas[2]
+print ' '
 
 # Calculate the corresponding LDCs
 c=LDC3.forward(alphas)
+print 'Converting alpha vector -> LDCs vector:'
 print 'c_2 = ',c[0]
 print 'c_3 = ',c[1]
 print 'c_4 = ',c[2]
@@ -18,11 +22,15 @@ print 'c_4 = ',c[2]
 passed=LDC3.criteriatest(0,c)
 if passed == 1:
    print 'LDCs satisfy the 7 analytic criteria => physically valid'
+   print ' '
 else:
    print 'LDCs violate one or more of the 7 analytic criteria'
+   print ' '
 
 # Invert LDCs back to alphas
 alphas_inv=LDC3.inverse(c)
+print 'Converting LDCs vector -> alpha vector:'
 print 'alpha_h = ',alphas_inv[0]
 print 'alpha_r = ',alphas_inv[1]
 print 'alpha_t = ',alphas_inv[2]
+print ' '

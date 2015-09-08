@@ -1,0 +1,147 @@
+%% INTRODUCTION
+%%
+
+Stellar limb darkening affects a wide range of astronomical observations, such
+as exoplanetary transits \citep{mandel:2002}, microlensed light curves 
+(e.g. \citealt{witt:1995}; \citealt{zub:2011}), rotational modulations 
+\citep{macula:2012}, ellipsoidal variations \citep{morris:1993}, interferometric 
+images of stars (e.g. \citealt{aufdenberg:1995}) and eclipsing binaries 
+\citep{kopal:1950}. When interpreting such observations, the assumed shape of 
+the limb darkening intensity profile may significantly affect the inferred 
+parameters of interest \citep{csizmadia:2013}. Consequently, an accurate 
+treatment of limb darkening is crucial, even when the effect itself is a 
+``nuisance'' phenomenon.
+
+In many practical cases, limb darkening is treated by describing the stellar 
+intensity profile with a closed-form analytic model. This model is usually 
+called the ``limb darkening law'', which is designed to provide an accurate 
+analytic approximation the true profile. The major advantage of modeling the
+intensity profile analytically is that the astronomical phenomena under
+investigation may also be modeled analytically, offering computational
+expedience and greater physical insight. As an example, in the field of 
+exoplanet transits, the shape of a transit light curve can be described with 
+a closed-form, analytic model under the assumption of a polynomial-based 
+description of the stellar intensity profile \citep{mandel:2002,gimenez:2006}.
+
+All of the commonly used limb darkening laws may be described as a summation of
+one or more simple functions, each of which is weighted by a so-called limb
+darkening coefficient (LDC). For example, the popular quadratic limb darkening 
+law describes the intensity profile as a quadratic series expansion with respect 
+to the angle between the line of sight and the emergent intensity ($\mu$) and
+has two LDCs \citep{kopal:1950}. These LDCs control the shape of the intensity 
+profile, subject to the flexibility granted by the limb darkening law's 
+complexity. It is therefore necessary to make at least two major decisions 
+with how to treat limb darkening; what limb darkening law should be used and 
+what LDCs should be assigned to this law?
+
+A typical approach for assigning LDCs is to adopt a set of so-called 
+``theoretical'' LDCs. In this framework, one first simulates an intensity 
+profile using a sophisticated stellar atmosphere model at a particular 
+wavelength or over a chosen integrated bandpass. One then takes this 
+simulation and regresses the limb darkening law of choice to it by finding
+the maximum likelihood set of LDCs (in some instances the LDCs are restricted
+to ensure physically sound profiles). Since the simulated profile is sensitive 
+to several parameters defining the stellar surface (e.g. effective temperature, 
+metallicity, surface gravity), several groups have produced grid tabulations of 
+LDCs for a wide range of plausible inputs and assumed limb darkening law (e.g.
+see \citealt{vanhamme:1993}, \citealt{diaz:1995}, \citealt{claret:2000} and
+\citealt{sing:2010}).
+
+In recent years, there has been a shift away from using theoretical LDCs in 
+favour of freely fitting LDCs simultaneous to the exploration of the other 
+parameters of interest (e.g. \citealt{knutson:2007}, \citealt{kipbak:2011a,
+kipbak:2011b} and \citealt{kreidberg:2014}). This approach, enabled by advances 
+in modern computers, allows one to propagate our ignorance regarding the shape 
+of the intensity profile into the estimation of the parameters of interest, 
+leading to more accurate estimates parameter uncertainties. Such a procedure
+also allows one to decouple from any possible errors in the stellar atmosphere
+models themselves, which have been shown to sometimes be inconsistent with
+observed limb darkening profiles \citep{howarth:2011,epinoza:2015}.
+
+%In the case where the star is well-characterized and theoretical models are 
+%highly trusted, the LDCs may be drawn from an informative prior, computed via 
+%Monte Carlo simulation of the stellar atmosphere models (e.g. 
+%\citealt{berta:2012} and \citealt{kepler22:2013}). In the case where the 
+%star is poorly characterized and/or the theoretical models are not trusted, an 
+%uninformative prior is typically adopted.
+
+One major challenge when attempting to freely fit LDCs is that many combinations
+of the LDCs are unphysical. For example, a specific choice of LDCs may result
+in the intensity profile being occasionally negative. These regions of 
+unphysical parameter space may coincide with likelihood minima, leading to
+erroneous parameter posterior distributions. Softer, extended likelihood
+minima (typical of low signal-to-noise data) may spill over into the unphysical
+parameter space, causing the final parameter posteriors to be marginalized over 
+large swaths of unphysical parameter space leading to unnecessarily swollen 
+error bars.
+
+There are two solutions to this problem. The first is to define a set of 
+criteria which quickly allow us to identify forbidden combinations of the LDCs.
+Armed with such criteria, one could then test each realization and accept or
+reject the realization accordingly. This works fine unless the volume of
+forbidden parameter space is large, in which case one will severely impede
+a regression algorithm's efficiency since most trials are being rejected
+as unphysical. A more elegant solution is to directly sample exclusively (or
+at least efficiently) from the physically allowed volume of parameter space (and 
+also in such a way that the LDCs can be uniformly, or nearly uniformly, 
+sampled). This provides the benefits of a very high efficiency, physically sound 
+priors and no need for testing criteria at each realization. However, this 
+approach comes at the cost of the initial intellectual investment to actually 
+solve how to perform efficient sampling in the first place.
+
+Because direct sampling of physical LDCs is challenging, the most complex limb 
+darkening law for which this feat has yet been achieved is the simple quadratic
+law, where the intensity profile of the star is given by
+
+\begin{align}
+I(\mu)/I(1) &= 1 - u_1 (1-\mu) - u_2 (1-\mu)^2,
+\label{eqn:Iquad}
+\end{align}
+
+where $I(1)$ is the specific intensity at the centre of the disc, $u_1$ and
+$u_2$ are the quadratic LDCs and $\mu$ is the cosine of the angle between the 
+line of sight and the emergent intensity. In \citet{LD:2013}, we showed that
+physically sound $u_1$ and $u_2$ LDCs reside within a triangle on the
+$u_1$-$u_2$ plane, from which uniform samples can be easily drawn by
+re-parameterizing to $q_1 = (u_1+u_2)^2$ and $q_2 = 0.5u_1(u_1+u_2)^{-1}$.
+Other simple two-parameter laws were considered as well in this work.
+
+Despite this successes with two-parameter laws, these laws are fundamentally
+limited in their ability to accurately describe realistic limb darkening 
+profiles. This translates to systematic uncertainty in any and all model 
+parameters which are covariant with the limb darkening properties. This may,
+for example, limit our ability to accurately measure the radius of a transiting
+exoplanet and thus make inferences of its composition. We are therefore motivated
+to extend the \citet{LD:2013} analysis to a more sophisticated limb darkening
+law.
+
+The most accurate closed-form limb darkening law is the \citet{claret:2000} 
+four-parameter non-linear law, described by,
+
+\begin{align}
+I(\mu)/I(1) = 1 &- c_1 (1-\mu^{1/2}) - c_2 (1-\mu) \nonumber\\
+\qquad&- c_3 (1-\mu^{3/2}) - c_4 (1-\mu^{2}),
+\label{eqn:Iclaret}
+\end{align}
+
+In numerous independent studies, this law has been found to provide the most 
+accurate description of simulated intensity profiles (e.g. 
+\citealt{claret:2000}, \citealt{sing:2010} and \citealt{magic:2015}) versus 
+competing models. This is, however, not surprising since this law also utilizes 
+the greatest number of LDCs. Analytically identifying the unphysical 
+combinations of these four LDCs remains an outstanding and formidable challenge. 
+A more tractable problem that we consider in this work is the allowed volume of 
+LDCs (and methods to directly sample from said volume) in the case of the 
+\citet{sing:2009} three-parameter law:
+
+\begin{align}
+I(\mu)/I(1) &= 1 - c_2 (1-\mu) - c_3 (1-\mu^{3/2}) - c_4 (1-\mu^{2}),
+\label{eqn:Ising}
+\end{align}
+
+\citet{sing:2010} argue that dropping the $c_1$ term is motivated by
+solar data \citep{neckel:1994} and 3D stellar models \citep{bigot:2006}, which
+show that $I(\mu)$ varies smoothly at small $\mu$, meaning that a $\mu^{1/2}$
+term is superfluous. We therefore argue that the \citet{sing:2009} law
+offers both a significant improvement in accuracy and yet is simple enough for
+us to analytically constrain the allowed LDCs.

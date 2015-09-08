@@ -1,0 +1,224 @@
+% mnras_template.tex
+%
+% LaTeX template for creating an MNRAS paper
+%
+% v3.0 released 14 May 2015
+% (version numbers match those of mnras.cls)
+%
+% Copyright (C) Royal Astronomical Society 2015
+% Authors:
+% Keith T. Smith (Royal Astronomical Society)
+
+% Change log
+%
+% v3.0 May 2015
+%    Renamed to match the new package name
+%    Version number matches mnras.cls
+%    A few minor tweaks to wording
+% v1.0 September 2013
+%    Beta testing only - never publicly released
+%    First version: a simple (ish) template for creating an MNRAS paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic setup. Most papers should leave these options alone.
+\documentclass[a4paper,fleqn,usenatbib]{mnras}
+
+% MNRAS is set in Times font. If you don't have this installed (most LaTeX
+% installations will be fine) or prefer the old Computer Modern fonts, comment
+% out the following line
+%\usepackage{newtxtext,newtxmath}
+% Depending on your LaTeX fonts installation, you might get better results with one of these:
+\usepackage{mathptmx}
+%\usepackage{txfonts}
+
+% Use vector fonts, so it zooms properly in on-screen viewing software
+% Don't change these lines unless you know what you are doing
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+
+%%%%% AUTHORS - PLACE YOUR OWN PACKAGES HERE %%%%%
+
+% Only include extra packages if you really need them. Common packages are:
+\usepackage{graphicx}	% Including figure files
+\usepackage{amsmath}	% Advanced maths commands
+\usepackage{amssymb}	% Extra maths symbols
+\usepackage{comment}
+\usepackage[%
+	%colorlinks=true,	% false: boxed links; true: colored links
+	%urlcolor=red,		% color of external links
+	%pdfpagelabels=true,
+	%hypertexnames=true,
+	%plainpages=false,
+	%naturalnames=true,
+%	bookmarks=true,         % show bookmarks bar?
+%	unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+%	pdftoolbar=true,        % show Acrobat’s toolbar?
+%	pdfmenubar=true,        % show Acrobat’s menu?
+%	pdffitwindow=false,     % window fit to page when opened
+%	pdfstartview={FitH},    % fits the width of the page to the window
+	%pdftitle={Priors for Orbital Eccentricity},    % title
+	%pdfauthor={David M. Kipping},     % author
+%	pdfsubject={Subject},   % subject of the document
+%	pdfcreator={Creator},   % creator of the document
+%	pdfproducer={Producer}, % producer of the document
+%	pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+%	pdfnewwindow=true,      % links in new window
+	%linkcolor=red,          % color of internal links (change box color with linkbordercolor)
+	%citecolor=green,        % color of links to bibliography
+%	filecolor=magenta,      % color of file links
+        ]{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% AUTHORS - PLACE YOUR OWN COMMANDS HERE %%%%%
+
+\input{shortcuts.tex}
+
+% Please keep new commands to a minimum, and use \newcommand not \def to avoid
+% overwriting existing commands. Example:
+%\newcommand{\pcm}{\,cm$^{-2}$}	% per cm-squared
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%
+
+% Title of the paper, and the short title which is used in the headers.
+% Keep the title short and informative.
+\title[
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% <- This is the maximum short-title
+Efficient, uninformative sampling of LDCs
+]{
+Efficient, uninformative sampling of limb darkening coefficients for a 
+three-parameter law
+}
+
+% The list of authors, and the short list which is used in the headers.
+% If you need two or more lines of authors, add an extra line using \newauthor
+\author[D. M. Kipping]{
+David M. Kipping$^{1}$\thanks{E-mail:\href{mailto:\myemail}{\myemail}}
+\\
+% List of institutions
+$^{1}$Dept. of Astronomy, Columbia University, 550 W 120th St., New York, 
+NY 10027, USA
+}
+
+% These dates will be filled out by the publisher
+\date{Accepted XXX. Received YYY; in original form ZZZ}
+
+% Enter the current year, for the copyright statements etc.
+\pubyear{2015}
+
+% Don't change these lines
+\begin{document}
+\label{firstpage}
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\maketitle
+
+% Abstract of the paper
+\begin{abstract}
+Stellar limb darkening impacts a wide range of astronomical measurements. The
+accuracy to which it is modeled limits the accuracy in any covariant parameters 
+of interest, such as the radius of a transiting planet. With the ever growing 
+availability of precise observations and the importance of robust estimates of 
+astrophysical parameters, an emerging trend has been to freely fit the limb 
+darkening coefficients (LDCs) describing a limb darkening law of choice, in
+order to propagate our ignorance of the true intensity profile. In practice,
+this approach has been limited to two-parameter limb darkening laws, such as the
+quadratic law, due to the relative ease of sampling the physically allowed
+range of LDCs. Here, we provide a highly efficient method for sampling LDCs
+describing a more accurate three-parameter non-linear law. We first derive 
+analytic criteria which can quickly test if a set of LDCs are physical, although 
+naive sampling with these criteria leads to an acceptance rate less than 1\%. We 
+then show that the loci of allowed LDCs can be transformed into a cone-like 
+volume, from which we are able to draw uniform samples. We show that samples 
+drawn uniformly from the conal region are physically valid in 97.3\% of 
+realizations and encompass 94.4\% of the volume of allowed parameter space. We 
+provide Python and Fortran code (\LDC) to sample from this region (and perform 
+the reverse calculation) at \link, which also includes a subroutine to 
+efficiently test whether a sample is physically valid or not.
+\end{abstract}
+
+% Select between one and six entries from the list of approved keywords.
+% Don't make up new ones.
+\begin{keywords}
+% MNRAS Maximum = 6
+methods: analytical --- method: statistical --- stars: atmospheres
+\end{keywords}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
+
+\section{INTRODUCTION}
+\label{sec:intro}
+
+\input{introduction.tex}
+
+\section{PHYSICAL CRITERIA}
+\label{sec:criteria}
+
+\input{criteria.tex}
+
+\section{BOUNDS ON THE LDC\tiny{s}}
+\label{sec:bounds}
+
+\input{bounds.tex}
+
+\section{NUMERICAL TESTING OF THE CRITERIA}
+\label{sec:criteria_tests}
+
+\input{criteria_tests.tex}
+
+\section{TRANSFORMATIVE GEOMETRY}
+\label{sec:transformations}
+
+\input{transformations.tex}
+
+\section{DISCUSSION}
+\label{sec:discussion}
+
+\input{discussion.tex}
+
+\section*{Acknowledgements}
+
+DMK acknowledges support from the CfA Menzel fellowship program.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
+
+% The best way to enter references is to use BibTeX:
+
+%\bibliographystyle{mnras}
+%\bibliography{example} % if your bibtex file is called example.bib
+
+
+% Alternatively you could enter them by hand, like this:
+% This method is tedious and prone to error if you have lots of references
+\begin{thebibliography}{99}
+\input{references.tex}
+\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+\appendix
+
+\section{Some extra material}
+
+If you want to present additional material which would interrupt the flow of the main paper,
+it can be placed in an Appendix which appears after the list of references.
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Don't change these lines
+\bsp	% typesetting comment
+\label{lastpage}
+\end{document}
+
+% End of mnras_template.tex
